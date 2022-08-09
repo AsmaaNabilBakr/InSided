@@ -38,6 +38,13 @@ function App() {
     setKeyPAT(userKey);
     setIsInputDisabled(true);
   };
+  const resetInput = () => {
+    localStorage.removeItem("userKey");
+    setUserKey("");
+    setKeyPAT("");
+    setIsInputDisabled(false);
+    setCommitsList([]);
+  };
   return (
     <div className="App">
       <div className="keyForm">
@@ -55,27 +62,17 @@ function App() {
         >
           Insert
         </button>
-        <button
-          className="actionBtn resetBtn"
-          onClick={() => {
-            localStorage.removeItem("userKey");
-            setUserKey("");
-            setKeyPAT("");
-            setIsInputDisabled(false);
-            setCommitsList([]);
-          }}
-        >
+        <button className="actionBtn resetBtn" onClick={resetInput}>
           Reset
         </button>
-      </div>
-      <ul className="commitsList">
-        {commitsList && (
-          <li>
-            <button className="actionBtn insertBtn" onClick={getAllCommits}>
-              Refresh
-            </button>
-          </li>
+        {keyPAT && (
+          <button className="actionBtn refreshBtn" onClick={getAllCommits}>
+            Refresh
+          </button>
         )}
+      </div>
+
+      <ul className="commitsList">
         {commitsList.length > 0 &&
           commitsList.map((item: any) => (
             <li key={item.sha} className="commitItem">
