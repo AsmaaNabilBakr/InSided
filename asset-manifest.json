@@ -1,15 +1,15 @@
 {
   "files": {
-    "main.css": "/InSided/tree/master/static/css/main.468e0f40.css",
-    "main.js": "/InSided/tree/master/static/js/main.8ca5fbdf.js",
-    "static/js/787.f6a71378.chunk.js": "/InSided/tree/master/static/js/787.f6a71378.chunk.js",
-    "index.html": "/InSided/tree/master/index.html",
-    "main.468e0f40.css.map": "/InSided/tree/master/static/css/main.468e0f40.css.map",
-    "main.8ca5fbdf.js.map": "/InSided/tree/master/static/js/main.8ca5fbdf.js.map",
-    "787.f6a71378.chunk.js.map": "/InSided/tree/master/static/js/787.f6a71378.chunk.js.map"
+    "main.css": "/InSided/static/css/main.468e0f40.css",
+    "main.js": "/InSided/static/js/main.e47089ff.js",
+    "static/js/787.f6a71378.chunk.js": "/InSided/static/js/787.f6a71378.chunk.js",
+    "index.html": "/InSided/index.html",
+    "main.468e0f40.css.map": "/InSided/static/css/main.468e0f40.css.map",
+    "main.e47089ff.js.map": "/InSided/static/js/main.e47089ff.js.map",
+    "787.f6a71378.chunk.js.map": "/InSided/static/js/787.f6a71378.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.468e0f40.css",
-    "static/js/main.8ca5fbdf.js"
+    "static/js/main.e47089ff.js"
   ]
 }
