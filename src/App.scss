@@ -51,6 +51,15 @@
         background: #656464 !important ;
       }
     }
+    &:disabled {
+      background: #cbcbcb !important;
+      color: #999 !important;
+      cursor: not-allowed;
+      &:hover {
+        background: #cbcbcb !important;
+        color: #999 !important;
+      }
+    }
   }
 }
 .commitsList {
