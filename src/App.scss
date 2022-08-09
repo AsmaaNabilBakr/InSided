@@ -1,0 +1,83 @@
+.App {
+  background-color: #f6f6f68a;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  font-size: calc(10px + 2vmin);
+  color: white;
+}
+
+.keyForm {
+  display: flex;
+  flex-flow: row;
+  align-items: center;
+  width: 40%;
+  justify-content: center;
+  margin-top: 20px;
+  input {
+    height: 35px;
+    width: 70%;
+    border: 1px solid #e1e1e1;
+    margin-right: 10px;
+    padding: 0 10px;
+    &:focus {
+      outline: none !important;
+    }
+    &:disabled {
+      background: #e1e1e1 !important;
+      color: #999 !important;
+    }
+  }
+  .actionBtn {
+    border: none;
+    padding: 5px 20px;
+    cursor: pointer;
+    height: 35px;
+    transition: background 0.6s;
+    &.insertBtn {
+      background: #e60000;
+      margin-right: 7px;
+      color: #fff;
+      &:hover {
+        background: #b90202 !important ;
+      }
+    }
+    &.resetBtn {
+      background: #7b7b7b;
+      color: #fff;
+      &:hover {
+        background: #656464 !important ;
+      }
+    }
+  }
+}
+.commitsList {
+  width: 39%;
+  display: flex;
+  justify-content: center;
+  padding: 0;
+  flex-flow: column;
+  .commitItem {
+    list-style: none;
+    width: 100%;
+    background: #fff;
+    color: #333;
+    font-size: 17px;
+    text-align: left;
+    padding: 11px;
+    border-radius: 5px;
+    border: 1px solid #e1e1e1;
+    box-shadow: 2px 4px 13px 5px #00000014;
+    margin-bottom: 25px;
+    label {
+      font-weight: 600;
+    }
+    .commitTime {
+      margin-right: 5px;
+    }
+    .commitAuther {
+    }
+  }
+}
