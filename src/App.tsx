@@ -1,10 +1,11 @@
 import React, { useEffect, useState } from "react";
 import logo from "./logo.svg";
 import "./App.scss";
+import { Octokit } from "octokit";
 
 function App() {
   const [userKey, setUserKey] = useState("");
-  const [keyPAT, setKeyPAT] = useState("");
+  const [keyPAT, setKeyPAT] = useState<string>();
   const [commitsList, setCommitsList] = useState<any>([]);
   const [isInputDisabled, setIsInputDisabled] = useState(false);
   useEffect(() => {
@@ -14,10 +15,26 @@ function App() {
       setKeyPAT(userKeyFromLocal);
       setIsInputDisabled(true);
     }
-  });
+  }, []);
+
+  useEffect(() => {
+    if (keyPAT) {
+      getAllCommits();
+      console.log("eff");
+      console.log(keyPAT);
+    }
+  }, [keyPAT]);
+  const getAllCommits = async () => {
+    const octokit = new Octokit({
+      auth: keyPAT,
+    });
+    const AllData = await octokit.request(
+      "GET /repos/AsmaaNabilBakr/Insided/commits"
+    );
+    setCommitsList(AllData.data);
+  };
   const handleChange = (key: string) => {
     setUserKey(key);
-    console.log(userKey);
   };
   const insertKey = () => {
     localStorage.setItem("userKey", userKey);
@@ -34,7 +51,11 @@ function App() {
           disabled={isInputDisabled}
           onChange={(e) => handleChange(e.target.value)}
         />
-        <button className="actionBtn insertBtn" onClick={insertKey}>
+        <button
+          className="actionBtn insertBtn"
+          disabled={userKey.length == 0}
+          onClick={insertKey}
+        >
           Insert
         </button>
         <button
@@ -43,21 +64,30 @@ function App() {
             localStorage.removeItem("userKey");
             setUserKey("");
             setIsInputDisabled(false);
+            setCommitsList([]);
           }}
         >
           Reset
         </button>
       </div>
       <ul className="commitsList">
-        {commitsList?.map((item : any) => (
-          <li key={item.node_id} className="commitItem">
-            <label>{item.message}</label>
-            <div>
-              <span className="commitTime">{item.author.date}</span>
-              <span className="commitAuther">{item.author.name}</span>
-            </div>
-          </li>
-        ))}
+        {commitsList.length > 0 &&
+          commitsList.map((item: any) => (
+            <li key={item.sha} className="commitItem">
+              <label>{item.commit.message}</label>
+              <div>
+                <span className="commitTime">
+                  {new Date(item.commit.author.date).toDateString()}
+                  {", "}
+                  {new Date(item.commit.author.date).toLocaleTimeString([], {
+                    hour: "2-digit",
+                    minute: "2-digit",
+                  })}
+                </span>
+                <span className="commitAuther">{item.commit.author.name}</span>
+              </div>
+            </li>
+          ))}
       </ul>
     </div>
   );
